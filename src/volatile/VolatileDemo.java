@@ -1,7 +1,7 @@
 import java.util.concurrent.TimeUnit;
 
 class DataStorage {
-    int number = 0;
+    volatile int number = 0;
 
     public void to100() {
         this.number = 100;
@@ -22,6 +22,6 @@ public class VolatileDemo {
             System.out.println(Thread.currentThread().getName() + "\t update number value = " + dataStorage.number);
         }, "thread-no-1").start();
         while (dataStorage.number == 0) {}
-        System.out.println(Thread.currentThread().getName() + "\t mian end.");
+        System.out.println(Thread.currentThread().getName() + "\t get number = " + dataStorage.number + " end.");
     }
 }
