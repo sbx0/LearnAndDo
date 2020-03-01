@@ -7,7 +7,7 @@ class DataStorage {
         this.number = 100;
     }
 
-    public void click() {
+    public synchronized void click() {
         this.number++;
     }
 }
