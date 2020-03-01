@@ -22,14 +22,12 @@ public class VolatileDemo {
         DataStorage dataStorage = new DataStorage();
         for (int i = 0; i < 20; i++) {
             new Thread(() -> {
-                System.out.println(Thread.currentThread().getName() + "\t is start.");
                 for (int j = 0; j < 1000; j++) {
                     dataStorage.click();
-                    System.out.println(Thread.currentThread().getName() + "\t number = " + dataStorage.number);
                 }
             }, "thread-no-" + i).start();
         }
-        while (Thread.activeCount() > 2) {
+        while (Thread.activeCount() > 1) {
             Thread.yield();
         }
         System.out.println(Thread.currentThread().getName() + "\t result = " + dataStorage.number);
