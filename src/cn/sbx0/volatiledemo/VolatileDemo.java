@@ -1,3 +1,5 @@
+package cn.sbx0.volatiledemo;
+
 import java.util.concurrent.TimeUnit;
 
 class DataStorage {
@@ -13,21 +15,18 @@ class DataStorage {
 }
 
 public class VolatileDemo {
-    public static void main(String[] args) {
-        volatileDontSupportAtomicity();
-    }
-
     // volatile 不保证原子性
     public static void volatileDontSupportAtomicity() {
         DataStorage dataStorage = new DataStorage();
         for (int i = 0; i < 20; i++) {
             new Thread(() -> {
+                System.out.println(Thread.currentThread().getName() + "\t is start.");
                 for (int j = 0; j < 1000; j++) {
                     dataStorage.click();
                 }
             }, "thread-no-" + i).start();
         }
-        while (Thread.activeCount() > 1) {
+        while (Thread.activeCount() > 2) {
             Thread.yield();
         }
         System.out.println(Thread.currentThread().getName() + "\t result = " + dataStorage.number);
