@@ -46,6 +46,7 @@ public class VolatileDemo {
             System.out.println(Thread.currentThread().getName() + "\t update number value = " + dataStorage.number);
         }, "thread-no-1").start();
         while (dataStorage.number == 0) {
+            Thread.yield();
         }
         System.out.println(Thread.currentThread().getName() + "\t get number = " + dataStorage.number + " end.");
     }
