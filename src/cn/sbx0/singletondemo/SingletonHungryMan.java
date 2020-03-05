@@ -12,7 +12,6 @@ public class SingletonHungryMan {
     public static final SingletonHungryMan INSTANCE = new SingletonHungryMan();
 
     private SingletonHungryMan() {
-
     }
 
     // 可以直接通过类名调用这个方法
